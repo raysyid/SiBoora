@@ -15,26 +15,32 @@ export default function Header() {
       flexShrink: 0,
       boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
     }}>
-      <button style={{
-        position: 'relative', width: '36px', height: '36px',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        borderRadius: '10px', border: 'none', background: 'transparent', cursor: 'pointer',
-      }}
+      <button
+        className="interactive interactive-wiggle interactive-glow"
+        style={{
+          position: 'relative', width: '36px', height: '36px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          borderRadius: '10px', border: 'none', background: 'transparent', cursor: 'pointer',
+          transition: 'background 0.2s ease',
+        }}
         onMouseOver={e => e.currentTarget.style.background = '#f1f5f9'}
         onMouseOut={e => e.currentTarget.style.background = 'transparent'}
       >
         <Bell size={18} style={{ color: '#64748b' }} />
-        <span style={{
+        <span className="anim-pulse-dot" style={{
           position: 'absolute', top: '6px', right: '6px',
           width: '8px', height: '8px', background: '#f97316',
           borderRadius: '50%', border: '2px solid white',
         }} />
       </button>
-      <button style={{
-        width: '36px', height: '36px',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        borderRadius: '10px', border: 'none', background: 'transparent', cursor: 'pointer',
-      }}
+      <button
+        className="interactive interactive-wiggle interactive-glow"
+        style={{
+          width: '36px', height: '36px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          borderRadius: '10px', border: 'none', background: 'transparent', cursor: 'pointer',
+          transition: 'background 0.2s ease',
+        }}
         onMouseOver={e => e.currentTarget.style.background = '#f1f5f9'}
         onMouseOut={e => e.currentTarget.style.background = 'transparent'}
       >

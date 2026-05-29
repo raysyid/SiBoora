@@ -56,34 +56,266 @@ body {
   background: #cbd5e1;
   border-radius: 3px;
 }
-}
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 
-/* Custom Interactive Animations */
-.hover-lift {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-}
-.hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 20px -8px rgba(37, 99, 235, 0.3);
+/* ================================== */
+/*   KEYFRAME ANIMATIONS              */
+/* ================================== */
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-6deg); }
+  75% { transform: rotate(6deg); }
 }
 
-.hover-scale {
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.hover-scale:hover:not(:disabled) {
-  transform: scale(1.02);
-}
-.hover-scale:active:not(:disabled) {
-  transform: scale(0.97);
+@keyframes jello {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(1.05, 0.95); }
+  40% { transform: scale(0.95, 1.05); }
+  50% { transform: scale(1.03, 0.97); }
+  65% { transform: scale(0.98, 1.02); }
+  75% { transform: scale(1.01, 0.99); }
 }
 
+@keyframes pop-in {
+  0% { opacity: 0; transform: scale(0.85); }
+  60% { transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-ring {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* ================================== */
+/*   INTERACTIVE ANIMATION CLASSES    */
+/* ================================== */
+
+/* Base transition for all interactive elements */
+.interactive {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              background-color 0.2s ease,
+              color 0.2s ease,
+              border-color 0.2s ease;
+}
+
+/* Card-level scale with shadow lift */
+.interactive-scale {
+  --scale-factor: 1.03;
+  --shadow-color: rgba(59, 130, 246, 0.25);
+}
+.interactive-scale:hover {
+  transform: scale(var(--scale-factor));
+  box-shadow: 0 12px 28px -8px var(--shadow-color);
+}
+
+/* Playful bounce on click — squish then spring */
+.interactive-bounce:active:not(:disabled) {
+  transform: scale(0.93);
+  transition-duration: 0.08s;
+}
+
+/* Wiggle on hover (fun for icons/buttons) */
+.interactive-wiggle:hover {
+  animation: wiggle 0.4s ease-in-out;
+}
+
+/* Jello wobble on hover (cards, images) */
+.interactive-jello:hover {
+  animation: jello 0.6s ease;
+}
+
+/* Gentle float on hover */
+.interactive-float:hover {
+  animation: float 1.5s ease-in-out infinite;
+}
+
+/* Glow ring pulse on hover (for icon buttons) */
+.interactive-glow:hover {
+  animation: glow-ring 0.8s ease;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Shimmer gradient sweep on hover */
+.interactive-shimmer {
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.4) 50%,
+    transparent 100%
+  );
+}
+.interactive-shimmer:hover {
+  animation: shimmer 1.2s ease;
+}
+
+/* Slide-right on hover (for back/nav links) */
 .hover-slide-right {
-  transition: transform 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
 }
 .hover-slide-right:hover {
   transform: translateX(6px);
 }
 
+/* Pop-in entrance animation for elements */
+.anim-pop-in {
+  animation: pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Slide-up-fade entrance */
+.anim-slide-up {
+  animation: slide-up-fade 0.4s ease both;
+}
+
+/* Notification dot pulse */
+.anim-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ================================== */
+/*   INPUT FOCUS ANIMATIONS           */
+/* ================================== */
+
+.input-focus-glow {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+.input-focus-glow:hover {
+  border-color: #93c5fd !important;
+}
+.input-focus-glow:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15), 0 1px 3px rgba(0,0,0,0.08);
+  transform: scale(1.01);
+}
+
+/* ================================== */
+/*   BUTTON HOVER ENHANCEMENTS        */
+/* ================================== */
+
+.btn-hover-lift {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.2s ease,
+              background-color 0.2s ease;
+}
+.btn-hover-lift:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -4px rgba(249, 115, 22, 0.4);
+}
+.btn-hover-lift:active:not(:disabled) {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 0.08s;
+}
+
+/* Nav-link hover effect */
+.nav-hover {
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+.nav-hover:hover {
+  background: rgba(255, 255, 255, 0.6) !important;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Time slot button hover */
+.time-slot-hover {
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.time-slot-hover:hover:not(:disabled) {
+  transform: scale(1.06);
+  border-color: #f97316 !important;
+  box-shadow: 0 4px 12px -2px rgba(249, 115, 22, 0.25);
+}
+.time-slot-hover:active:not(:disabled) {
+  transform: scale(0.95);
+  transition-duration: 0.08s;
+}
+
+/* Footer link underline slide */
+.footer-link {
+  position: relative;
+  text-decoration: none;
+}
+.footer-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1.5px;
+  background: #2563eb;
+  transition: width 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* Image zoom on hover */
+.img-hover-zoom {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s ease;
+  will-change: transform;
+}
+.img-hover-zoom:hover {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
+
+/* Facility tag hover */
+.facility-tag-hover {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.2s ease,
+              border-color 0.2s ease;
+}
+.facility-tag-hover:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 8px -2px rgba(234, 88, 12, 0.2);
+  border-color: #f97316 !important;
+}
+
+/* Staggered children entrance */
+.stagger-children > * {
+  animation: slide-up-fade 0.4s ease both;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+
+/* Reduced motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

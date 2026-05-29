@@ -243,7 +243,7 @@ export default function SearchFilter({ onSearch }) {
                       borderBottom: '1px solid #f1f5f9',
                       transition: 'background-color 0.2s'
                     }}
-                    onMouseOver={e => e.currentTarget.style.backgroundColor = '#f8fafc'}
+                    className="interactive interactive-scale" onMouseOver={e => e.currentTarget.style.backgroundColor = '#f8fafc'}
                     onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
                   >
                     <input 
@@ -263,7 +263,7 @@ export default function SearchFilter({ onSearch }) {
 
       {/* Button Row */}
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <button
+          <button className="interactive interactive-bounce"
           type="submit"
           style={{
             display: 'inline-flex',

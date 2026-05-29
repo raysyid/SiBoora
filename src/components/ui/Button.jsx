@@ -31,7 +31,7 @@ export default function Button({
 
   return (
     <button
-      className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`interactive interactive-bounce ${base} ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
       {children}

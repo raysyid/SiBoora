@@ -14,7 +14,7 @@ export default function RoomCard({ room }) {
 
   return (
     <div
-      className="hover-lift"
+      className="interactive interactive-scale"
       style={{
         background: 'white',
         borderRadius: '16px',

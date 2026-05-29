@@ -17,7 +17,8 @@ export default function Footer() {
           <a
             key={link}
             href="#"
-            style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '500', textDecoration: 'none', transition: 'color 0.15s' }}
+            className="footer-link"
+            style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '500', textDecoration: 'none', transition: 'color 0.2s ease' }}
             onMouseOver={e => e.currentTarget.style.color = '#2563eb'}
             onMouseOut={e => e.currentTarget.style.color = '#94a3b8'}
           >
