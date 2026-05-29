@@ -242,7 +242,7 @@ export default function DetailRuanganPage() {
               ) : (
                 <button
                   id="btn-booking-ruang"
-                  onClick={handleBooking}
+                  onClick={() => navigate(`/booking-ruangan/${id}`)}
                   className="w-full bg-[#f97316] hover:bg-[#ea580c] text-white font-bold text-sm py-3 px-4 rounded-xl transition-all duration-200 hover:shadow-lg active:scale-95 uppercase tracking-widest"
                 >
                   Booking Ruang
