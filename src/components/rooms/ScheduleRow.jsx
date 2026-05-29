@@ -6,16 +6,14 @@ import Badge from '../ui/Badge'
  * @param {'tersedia'|'dipesan'} status
  * @param {string|null} kegiatan - nama kegiatan jika dipesan
  */
-export default function ScheduleRow({ waktu, status, kegiatan }) {
+export default function ScheduleRow({ waktu, status }) {
+  const isTersedia = status === 'tersedia'
   return (
-    <div className="flex items-center justify-between py-3 px-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors duration-150">
-      <span className="text-sm font-medium text-slate-700">{waktu}</span>
-      <div className="flex items-center gap-3">
-        {kegiatan && (
-          <span className="text-xs text-slate-400 hidden sm:block">{kegiatan}</span>
-        )}
-        <Badge status={status} />
-      </div>
+    <div className="flex items-center justify-between bg-slate-100 border border-slate-200 rounded-md" style={{ padding: '0.625rem 1rem' }}>
+      <span className="text-sm text-slate-700">{waktu}</span>
+      <span className="text-xs rounded text-white" style={{ padding: '0.25rem 0.75rem', backgroundColor: isTersedia ? '#20c997' : '#ff4d4f' }}>
+        {isTersedia ? 'Tersedia' : 'Dipesan'}
+      </span>
     </div>
   )
 }

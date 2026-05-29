@@ -9,7 +9,6 @@ import {
   CheckCircle2,
   AlertCircle,
 } from 'lucide-react'
-import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
 import ScheduleRow from '../components/rooms/ScheduleRow'
 import FacilityItem from '../components/rooms/FacilityItem'
@@ -65,39 +64,36 @@ export default function DetailRuanganPage() {
   const col2 = fasilitas.slice(Math.ceil(fasilitas.length / 2))
 
   return (
-    <div>
+    <div style={{ paddingBottom: '2rem' }}>
       {/* Back Navigation */}
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center gap-1.5 text-slate-500 hover:text-blue-600 text-sm font-medium mb-5 transition-colors duration-200 group"
+        className="flex items-center text-slate-500 hover:text-blue-600 text-sm font-medium transition-colors"
+        style={{ gap: '0.5rem', marginBottom: '1.5rem' }}
       >
-        <ArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
+        <ArrowLeft size={16} />
         Kembali ke Daftar Ruang
       </button>
 
       {/* Page Title */}
-      <div className="mb-6">
-        <div className="flex items-center gap-3 mb-1">
-          <h1
-            className="text-3xl font-bold text-blue-700 leading-tight"
-            style={{ fontFamily: 'Poppins, sans-serif' }}
-          >
-            {nama}
-          </h1>
-          <Badge status={status} />
-        </div>
-        <p className="text-slate-500 text-sm flex items-center gap-1.5">
-          <MapPin size={14} className="text-slate-400" />
+      <div style={{ marginBottom: '2rem' }}>
+        <h1
+          className="text-3xl font-bold text-blue-700"
+          style={{ fontFamily: 'Poppins, sans-serif', marginBottom: '0.5rem', lineHeight: '1.2' }}
+        >
+          {nama}
+        </h1>
+        <p className="text-slate-500 text-sm">
           {gedung} • {lantai}
         </p>
       </div>
 
       {/* Main Content: 2 columns */}
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="flex flex-col lg:flex-row" style={{ gap: '2rem' }}>
         {/* LEFT COLUMN */}
-        <div className="flex-1 min-w-0 space-y-5">
+        <div className="flex-1 min-w-0">
           {/* Hero Image */}
-          <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-100 h-72 lg:h-80">
+          <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-100" style={{ marginBottom: '1.5rem', aspectRatio: '16/9' }}>
             <img
               src={image}
               alt={`Foto ${nama}`}
@@ -109,146 +105,131 @@ export default function DetailRuanganPage() {
           </div>
 
           {/* Info Bar */}
-          <div className="bg-white rounded-2xl border-2 border-orange-200 shadow-sm p-4">
-            <div className="flex items-center justify-around gap-4 flex-wrap">
-              {/* Lokasi */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MapPin size={18} className="text-blue-600" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Lokasi</div>
-                  <div className="text-sm font-semibold text-slate-800">{gedung}</div>
-                </div>
+          <div className="bg-white rounded-xl flex flex-wrap items-center justify-around" style={{ border: '1px solid #f97316', padding: '1.25rem', marginBottom: '2rem', gap: '1rem' }}>
+            {/* Lokasi */}
+            <div className="flex items-center gap-3">
+              <div className="bg-blue-600 rounded-lg flex items-center justify-center text-white" style={{ width: '2.5rem', height: '2.5rem' }}>
+                <MapPin size={18} />
               </div>
-
-              <div className="w-px h-8 bg-slate-200 hidden sm:block" />
-
-              {/* Kapasitas */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Users size={18} className="text-blue-600" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Kapasitas</div>
-                  <div className="text-sm font-semibold text-slate-800">{kapasitas} Kursi</div>
-                </div>
+              <div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Lokasi</div>
+                <div className="text-sm font-bold text-slate-800">{gedung}</div>
               </div>
+            </div>
 
-              <div className="w-px h-8 bg-slate-200 hidden sm:block" />
+            {/* Kapasitas */}
+            <div className="flex items-center gap-3">
+              <div className="bg-blue-600 rounded-lg flex items-center justify-center text-white" style={{ width: '2.5rem', height: '2.5rem' }}>
+                <Users size={18} />
+              </div>
+              <div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Kapasitas</div>
+                <div className="text-sm font-bold text-slate-800">{kapasitas} Kursi</div>
+              </div>
+            </div>
 
-              {/* Tipe */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <LayoutGrid size={18} className="text-blue-600" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tipe</div>
-                  <div className="text-sm font-semibold text-slate-800">{tipe}</div>
-                </div>
+            {/* Tipe */}
+            <div className="flex items-center gap-3">
+              <div className="bg-blue-600 rounded-lg flex items-center justify-center text-white" style={{ width: '2.5rem', height: '2.5rem' }}>
+                <LayoutGrid size={18} />
+              </div>
+              <div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tipe</div>
+                <div className="text-sm font-bold text-slate-800">{tipe}</div>
               </div>
             </div>
           </div>
 
           {/* Description + Facilities */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
-            <div className="flex flex-col sm:flex-row gap-6">
-              {/* Deskripsi */}
-              <div className="flex-1">
-                <h2 className="font-bold text-slate-800 text-base mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                  Deskripsi
-                </h2>
-                <p className="text-sm text-slate-600 leading-relaxed">{deskripsi}</p>
-              </div>
+          <div className="flex flex-col sm:flex-row" style={{ gap: '2rem' }}>
+            {/* Deskripsi */}
+            <div className="flex-1">
+              <h2 className="font-bold text-slate-800 text-lg mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                Deskripsi
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed">{deskripsi}</p>
+            </div>
 
-              {/* Fasilitas */}
-              <div className="flex-1">
-                <h2 className="font-bold text-slate-800 text-base mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                  Fasilitas
-                </h2>
-                <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
-                  {col1.map((f) => (
-                    <FacilityItem key={f} name={f} />
-                  ))}
-                  {col2.map((f) => (
-                    <FacilityItem key={f} name={f} />
-                  ))}
-                </div>
+            {/* Fasilitas */}
+            <div className="flex-1">
+              <h2 className="font-bold text-slate-800 text-lg mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                Fasilitas
+              </h2>
+              <div className="grid grid-cols-2" style={{ gap: '1rem' }}>
+                {col1.map((f) => (
+                  <FacilityItem key={f} name={f} />
+                ))}
+                {col2.map((f) => (
+                  <FacilityItem key={f} name={f} />
+                ))}
               </div>
             </div>
           </div>
         </div>
 
         {/* RIGHT COLUMN — Booking Panel */}
-        <div className="w-full lg:w-80 xl:w-88 flex-shrink-0">
-          <div className="bg-blue-700 rounded-2xl shadow-lg overflow-hidden sticky top-6">
+        <div className="flex-shrink-0" style={{ width: '100%', maxWidth: '360px' }}>
+          <div className="rounded-xl overflow-hidden sticky top-6 shadow-md" style={{ border: '1px solid #bfdbfe' }}>
             {/* Header */}
-            <div className="p-5 pb-4">
-              <h2 className="text-white font-bold text-xl leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            <div style={{ backgroundColor: '#1d4ed8', padding: '1.25rem' }}>
+              <h2 className="text-white font-bold text-lg mb-1" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 Pesan Ruangan Ini
               </h2>
-              <p className="text-blue-200 text-sm mt-1 leading-relaxed">
+              <p className="text-blue-100 text-xs leading-relaxed">
                 Cek ketersediaan dan amankan jadwal Anda.
               </p>
             </div>
 
             {/* White card body */}
-            <div className="bg-white mx-3 mb-3 rounded-xl p-4 space-y-4">
+            <div className="bg-white" style={{ padding: '1.25rem' }}>
               {/* Pilih Tanggal */}
-              <div>
-                <label className="block text-xs font-semibold text-slate-500 mb-1.5 uppercase tracking-wide">
+              <div style={{ marginBottom: '1.5rem' }}>
+                <label className="block text-sm font-medium text-slate-800 mb-2">
                   Pilih Tanggal
                 </label>
                 <div className="relative">
-                  <Calendar
-                    size={15}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-                  />
                   <input
-                    id="booking-tanggal"
                     type="date"
                     value={selectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2.5 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400/40 focus:border-blue-400 text-slate-700 transition-all"
+                    className="w-full text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-700"
+                    style={{ padding: '0.625rem 0.75rem', paddingRight: '2.5rem' }}
+                  />
+                  <Calendar
+                    size={16}
+                    className="absolute text-slate-400 pointer-events-none"
+                    style={{ right: '0.75rem', top: '50%', transform: 'translateY(-50%)' }}
                   />
                 </div>
               </div>
 
               {/* Jadwal Ketersediaan */}
               <div>
-                <label className="block text-xs font-semibold text-slate-500 mb-2 uppercase tracking-wide">
+                <label className="block text-sm font-medium text-slate-800 mb-2">
                   Jadwal Ketersediaan
                 </label>
-                <div className="space-y-2">
+                <div className="flex flex-col" style={{ gap: '0.5rem' }}>
                   {jadwal.map((slot, i) => (
                     <ScheduleRow
                       key={i}
                       waktu={slot.waktu}
                       status={slot.status}
-                      kegiatan={slot.kegiatan}
                     />
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Booking Button */}
-            <div className="px-3 pb-4 space-y-2">
-              {bookingSuccess ? (
-                <div className="w-full flex items-center justify-center gap-2 bg-emerald-500 text-white font-semibold text-sm py-3 px-4 rounded-xl">
-                  <CheckCircle2 size={16} />
-                  Pengajuan Terkirim!
-                </div>
-              ) : (
-                <button
-                  id="btn-booking-ruang"
-                  onClick={() => navigate(`/booking-ruangan/${id}`)}
-                  className="w-full bg-[#f97316] hover:bg-[#ea580c] text-white font-bold text-sm py-3 px-4 rounded-xl transition-all duration-200 hover:shadow-lg active:scale-95 uppercase tracking-widest"
-                >
-                  Booking Ruang
-                </button>
-              )}
-              <p className="text-center text-blue-200 text-xs">Memerlukan persetujuan admin.</p>
+            {/* Booking Button Footer */}
+            <div style={{ backgroundColor: '#eff6ff', padding: '1.25rem', borderTop: '1px solid #dbeafe' }}>
+              <button
+                onClick={() => navigate(`/booking-ruangan/${id}`)}
+                className="w-full text-white font-bold text-sm rounded-md transition-all uppercase tracking-wider hover:opacity-90"
+                style={{ backgroundColor: '#f97316', padding: '0.75rem 1rem', marginBottom: '0.5rem' }}
+              >
+                Booking Ruang
+              </button>
+              <p className="text-center text-slate-400" style={{ fontSize: '10px' }}>Memerlukan persetujuan admin.</p>
             </div>
           </div>
         </div>

@@ -34,11 +34,9 @@ export default function FacilityItem({ name }) {
   const Icon = facilityIconMap[key] || facilityIconMap.default
 
   return (
-    <div className="flex items-center gap-2.5 text-slate-600">
-      <div className="w-7 h-7 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
-        <Icon size={14} className="text-blue-600" />
-      </div>
-      <span className="text-sm font-medium">{name}</span>
+    <div className="flex items-center gap-3 text-slate-700">
+      <Icon size={18} className="text-blue-700" />
+      <span className="text-base">{name}</span>
     </div>
   )
 }

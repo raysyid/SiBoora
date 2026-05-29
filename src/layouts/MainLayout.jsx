@@ -14,11 +14,14 @@ export default function MainLayout() {
 
         {/* Page Content + Footer (scrollable together) */}
         <main style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ padding: '32px 40px', flex: 1 }}>
+          <div style={{ padding: '32px 40px', flex: '1 0 auto' }}>
             <Outlet />
           </div>
 
-          <Footer />
+          {/* Footer */}
+          <div style={{ flexShrink: 0 }}>
+            <Footer />
+          </div>
         </main>
       </div>
     </div>
