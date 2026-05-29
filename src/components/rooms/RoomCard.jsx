@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import { MapPin, Users, Monitor } from 'lucide-react'
+import { Users, Monitor, Tv } from 'lucide-react'
 import Badge from '../ui/Badge'
-import Button from '../ui/Button'
 
 /**
  * Card untuk menampilkan preview ruangan
@@ -9,62 +8,101 @@ import Button from '../ui/Button'
  */
 export default function RoomCard({ room }) {
   const navigate = useNavigate()
-  const { ruangId, nama, lokasi, kapasitas, fasilitas, status, image } = room
+  const { ruangId, nama, kapasitas, fasilitas, status, image } = room
 
   const fasilitasSingkat = fasilitas.slice(0, 2)
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+    <div
+      style={{
+        background: 'white',
+        borderRadius: '16px',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.07)',
+        border: '1px solid #f1f5f9',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        transition: 'box-shadow 0.25s, transform 0.25s',
+        cursor: 'pointer',
+      }}
+      onMouseOver={e => {
+        e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)'
+        e.currentTarget.style.transform = 'translateY(-3px)'
+      }}
+      onMouseOut={e => {
+        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.07)'
+        e.currentTarget.style.transform = 'translateY(0)'
+      }}
+    >
       {/* Image */}
-      <div className="relative h-44 overflow-hidden flex-shrink-0">
+      <div style={{ position: 'relative', height: '200px', overflow: 'hidden', flexShrink: 0 }}>
         <img
           src={image}
           alt={`Foto ${nama}`}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }}
+          onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
+          onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
           onError={(e) => {
             e.target.src = `https://placehold.co/400x220/e2e8f0/94a3b8?text=${encodeURIComponent(nama)}`
           }}
         />
         {/* Status badge overlay */}
-        <div className="absolute top-3 left-3">
+        <div style={{ position: 'absolute', top: '12px', left: '12px' }}>
           <Badge status={status} />
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-4 flex flex-col flex-1">
-        <h3 className="font-bold text-slate-800 text-lg leading-tight mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+      <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+        <h3 style={{ fontWeight: '700', color: '#1e293b', fontSize: '20px', lineHeight: '1.3', marginBottom: '12px', fontFamily: 'Poppins, sans-serif' }}>
           {nama}
         </h3>
 
         {/* Divider */}
-        <div className="border-t border-slate-100 my-2" />
+        <div style={{ borderTop: '1px solid #f1f5f9', marginBottom: '12px' }} />
 
         {/* Info row */}
-        <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
-          <span className="flex items-center gap-1.5">
-            <Users size={14} className="text-slate-400 flex-shrink-0" />
-            <span>Cap: {kapasitas}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '13px', color: '#64748b', marginBottom: '16px' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Users size={14} style={{ color: '#94a3b8', flexShrink: 0 }} />
+            Cap: {kapasitas}
           </span>
           {fasilitasSingkat.map((f) => (
-            <span key={f} className="flex items-center gap-1.5">
-              <Monitor size={14} className="text-slate-400 flex-shrink-0" />
-              <span>{f}</span>
+            <span key={f} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+              {f.toLowerCase() === 'tv' ? <Tv size={14} style={{ color: '#94a3b8', flexShrink: 0 }} /> : <Monitor size={14} style={{ color: '#94a3b8', flexShrink: 0 }} />}
+              {f}
             </span>
           ))}
         </div>
 
         {/* Button */}
-        <div className="mt-auto">
-          <Button
+        <div style={{ marginTop: 'auto' }}>
+          <button
             id={`btn-detail-${ruangId}`}
-            variant="outline"
-            size="md"
-            className="w-full uppercase tracking-wider text-xs"
             onClick={() => navigate(`/ruangan/${ruangId}`)}
+            style={{
+              width: '100%',
+              padding: '10px',
+              border: '2px solid #f97316',
+              borderRadius: '10px',
+              background: 'transparent',
+              color: '#f97316',
+              fontWeight: '700',
+              fontSize: '12px',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+            }}
+            onMouseOver={e => {
+              e.currentTarget.style.background = '#fff7ed'
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.background = 'transparent'
+            }}
           >
             Lihat Detail
-          </Button>
+          </button>
         </div>
       </div>
     </div>

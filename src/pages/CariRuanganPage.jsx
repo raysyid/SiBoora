@@ -18,37 +18,34 @@ export default function CariRuanganPage() {
   }, [])
 
   return (
-    <div className="p-6 lg:p-8 max-w-7xl mx-auto">
+    <div>
       {/* Page Header */}
-      <div className="mb-6">
-        <h1
-          className="text-3xl font-bold text-slate-800 leading-tight"
-          style={{ fontFamily: 'Poppins, sans-serif' }}
-        >
+      <div style={{ marginBottom: '28px' }}>
+        <h1 style={{ fontFamily: 'Poppins, sans-serif', fontSize: '32px', fontWeight: '800', color: '#1e293b', lineHeight: '1.2', marginBottom: '10px' }}>
           Cari Ruangan
         </h1>
-        <p className="text-slate-500 mt-1 text-sm">
+        <p style={{ color: '#64748b', fontSize: '14px' }}>
           Temukan dan pesan ruang yang sempurna untuk kebutuhan Anda.
         </p>
       </div>
 
       {/* Search Filter */}
-      <div className="mb-7">
+      <div style={{ marginBottom: '28px' }}>
         <SearchFilter onSearch={handleSearch} />
       </div>
 
       {/* Results Info */}
-      <div className="flex items-center justify-between mb-4">
-        <p className="text-sm text-slate-500">
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+        <p style={{ fontSize: '14px', color: '#64748b' }}>
           {hasSearched ? (
             <>
               Menampilkan{' '}
-              <span className="font-semibold text-slate-700">{rooms.length}</span> ruangan
+              <span style={{ fontWeight: '700', color: '#1e293b' }}>{rooms.length}</span> ruangan
             </>
           ) : (
             <>
               Semua ruangan tersedia:{' '}
-              <span className="font-semibold text-slate-700">{rooms.length}</span> ruang
+              <span style={{ fontWeight: '700', color: '#1e293b' }}>{rooms.length}</span> ruang
             </>
           )}
         </p>

@@ -65,7 +65,7 @@ export default function DetailRuanganPage() {
   const col2 = fasilitas.slice(Math.ceil(fasilitas.length / 2))
 
   return (
-    <div className="p-6 lg:p-8 max-w-7xl mx-auto">
+    <div>
       {/* Back Navigation */}
       <button
         onClick={() => navigate(-1)}
