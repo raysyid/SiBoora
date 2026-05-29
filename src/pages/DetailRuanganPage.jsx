@@ -67,8 +67,8 @@ export default function DetailRuanganPage() {
     <div style={{ paddingBottom: '2rem' }}>
       {/* Back Navigation */}
       <button
-        onClick={() => navigate(-1)}
-        className="flex items-center text-slate-500 hover:text-blue-600 text-sm font-medium transition-colors"
+        onClick={() => navigate('/cari-ruangan')}
+        className="flex items-center text-slate-500 hover:text-blue-600 text-sm font-medium transition-colors hover-slide-right"
         style={{ gap: '0.5rem', marginBottom: '1.5rem' }}
       >
         <ArrowLeft size={16} />

@@ -14,6 +14,7 @@ export default function RoomCard({ room }) {
 
   return (
     <div
+      className="hover-lift"
       style={{
         background: 'white',
         borderRadius: '16px',
@@ -22,16 +23,7 @@ export default function RoomCard({ room }) {
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        transition: 'box-shadow 0.25s, transform 0.25s',
         cursor: 'pointer',
-      }}
-      onMouseOver={e => {
-        e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)'
-        e.currentTarget.style.transform = 'translateY(-3px)'
-      }}
-      onMouseOut={e => {
-        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.07)'
-        e.currentTarget.style.transform = 'translateY(0)'
       }}
     >
       {/* Image */}

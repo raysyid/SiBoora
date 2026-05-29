@@ -61,50 +61,52 @@ export default function BookingRuanganPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div style={{ maxWidth: '800px', margin: '0 auto', paddingBottom: '3rem' }}>
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+      <div style={{ marginBottom: '1.5rem' }}>
+        <h1 className="text-3xl font-bold text-slate-900" style={{ fontFamily: 'Poppins, sans-serif', marginBottom: '0.25rem' }}>
           Selesaikan Pemesanan
         </h1>
-        <p className="text-slate-500">
+        <p className="text-slate-500 text-sm">
           Konfirmasi detail ruangan Anda dan isi informasi yang diperlukan.
         </p>
       </div>
 
       {/* Selected Room Card */}
-      <div className="bg-white border-2 border-blue-500 rounded-2xl p-1 relative overflow-hidden mb-8 shadow-sm flex flex-col md:flex-row items-stretch">
-        <div className="w-full md:w-64 h-48 md:h-auto flex-shrink-0 relative rounded-xl overflow-hidden m-1">
+      <div className="bg-white" style={{ border: '1px solid #3b82f6', borderRadius: '1rem', padding: '0.75rem', display: 'flex', gap: '1.5rem', marginBottom: '2rem', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}>
+        <div style={{ width: '280px', height: '180px', flexShrink: 0 }}>
           <img
             src={image}
             alt={nama}
-            className="w-full h-full object-cover"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '0.75rem' }}
           />
         </div>
-        <div className="p-6 flex-1 flex flex-col justify-center relative">
+        
+        <div style={{ flex: 1, padding: '0.5rem 0', position: 'relative' }}>
           <button
             onClick={() => navigate(`/ruangan/${id}`)}
-            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
+            className="text-blue-500 hover:text-blue-700 transition-colors"
+            style={{ position: 'absolute', top: '0', right: '0.5rem' }}
           >
-            <Pen size={16} />
+            <Pen size={18} />
           </button>
           
-          <div className="mb-3">
-            <span className="inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider rounded-full border border-blue-200">
+          <div style={{ marginBottom: '0.75rem' }}>
+            <span style={{ display: 'inline-block', fontSize: '0.65rem', fontWeight: 'bold', color: '#3b82f6', border: '1px solid #bfdbfe', borderRadius: '9999px', padding: '0.25rem 0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               RUANGAN TERPILIH
             </span>
           </div>
           
-          <h2 className="text-2xl font-bold text-slate-800 mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+          <h2 className="text-2xl font-bold text-slate-800" style={{ fontFamily: 'Poppins, sans-serif', marginBottom: '0.5rem' }}>
             {nama}
           </h2>
-          <p className="text-slate-600 mb-4">
+          <p className="text-slate-600 text-sm" style={{ marginBottom: '1.25rem' }}>
             {lantai} • Kapasitas: {kapasitas} Orang
           </p>
           
-          <div className="flex flex-wrap gap-2">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
             {fasilitas.slice(0, 3).map((f) => (
-              <div key={f} className="flex items-center gap-1.5 px-3 py-1.5 border border-orange-200 rounded-lg text-sm text-orange-700 bg-orange-50/50">
+              <div key={f} style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', border: '1px solid #fed7aa', color: '#ea580c', borderRadius: '0.375rem', padding: '0.25rem 0.5rem', fontSize: '0.75rem', fontWeight: '500' }}>
                 {getFacilityIcon(f)}
                 <span>{f}</span>
               </div>
@@ -114,37 +116,41 @@ export default function BookingRuanganPage() {
       </div>
 
       {/* Booking Form */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm mb-8">
-        <form onSubmit={handleSubmit} className="space-y-8">
+      <div className="bg-white" style={{ border: '1px solid #e2e8f0', borderRadius: '1rem', padding: '2rem', boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           
           {/* Tanggal */}
           <div>
-            <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-3">
+            <label className="text-slate-700" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.75rem' }}>
               <Calendar size={16} className="text-slate-400" />
               Tanggal Pemesanan
             </label>
-            <input
-              type="date"
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-              className="w-full max-w-sm px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-700"
-              required
-            />
+            <div style={{ position: 'relative', maxWidth: '300px' }}>
+              <input
+                type="date"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                className="text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                style={{ width: '100%', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '0.5rem', padding: '0.75rem 1rem', paddingRight: '2.5rem', fontSize: '0.875rem' }}
+                required
+              />
+              <Calendar size={16} className="text-slate-400" style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+            </div>
           </div>
           
-          <hr className="border-slate-100" />
+          <div style={{ height: '1px', backgroundColor: '#f1f5f9' }} />
 
           {/* Waktu */}
           <div>
-            <div className="flex items-center justify-between mb-3">
-              <label className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+              <label className="text-slate-700" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', fontWeight: '600' }}>
                 <Clock size={16} className="text-slate-400" />
                 Pilih Waktu
               </label>
-              <span className="text-xs text-slate-400 uppercase tracking-wider">WIB (GMT+7)</span>
+              <span className="text-slate-400" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>WIB (GMT+7)</span>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem' }}>
               {jadwal.map((slot) => {
                 const isAvailable = slot.status === 'tersedia';
                 const isSelected = selectedTime === slot.waktu;
@@ -154,12 +160,18 @@ export default function BookingRuanganPage() {
                     type="button"
                     disabled={!isAvailable}
                     onClick={() => setSelectedTime(slot.waktu)}
-                    className={`
-                      py-3 px-4 rounded-xl text-sm font-medium transition-all text-center
-                      ${!isAvailable ? 'bg-slate-100 text-slate-400 cursor-not-allowed line-through' : ''}
-                      ${isAvailable && !isSelected ? 'bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50/50' : ''}
-                      ${isSelected ? 'bg-white border-2 border-orange-500 text-orange-600 shadow-sm' : ''}
-                    `}
+                    className="transition-colors"
+                    style={{ 
+                      padding: '0.625rem 0', 
+                      borderRadius: '9999px', 
+                      fontSize: '0.875rem', 
+                      fontWeight: '500', 
+                      textAlign: 'center',
+                      backgroundColor: !isAvailable ? '#f8fafc' : (isSelected ? '#f97316' : '#ffffff'),
+                      color: !isAvailable ? '#94a3b8' : (isSelected ? '#ffffff' : '#475569'),
+                      border: isSelected ? '1px solid #f97316' : '1px solid #e2e8f0',
+                      cursor: !isAvailable ? 'not-allowed' : 'pointer'
+                    }}
                   >
                     {slot.waktu}
                   </button>
@@ -168,11 +180,11 @@ export default function BookingRuanganPage() {
             </div>
           </div>
           
-          <hr className="border-slate-100" />
+          <div style={{ height: '1px', backgroundColor: '#f1f5f9' }} />
 
           {/* Subject */}
           <div>
-            <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-3">
+            <label className="text-slate-700" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.75rem' }}>
               <Book size={16} className="text-slate-400" />
               Mata Kuliah / Subjek
             </label>
@@ -181,14 +193,15 @@ export default function BookingRuanganPage() {
               placeholder="misalnya, Proyek Kelompok Rekayasa Perangkat Lunak"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-700"
+              className="text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              style={{ width: '100%', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '0.5rem', padding: '0.875rem 1rem', fontSize: '0.875rem' }}
               required
             />
           </div>
 
           {/* Purpose */}
           <div>
-            <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-3">
+            <label className="text-slate-700" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.75rem' }}>
               <FileText size={16} className="text-slate-400" />
               Tujuan Pemesanan
             </label>
@@ -197,22 +210,34 @@ export default function BookingRuanganPage() {
               value={purpose}
               onChange={(e) => setPurpose(e.target.value)}
               rows={4}
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-700 resize-none"
+              className="text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              style={{ width: '100%', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '0.5rem', padding: '0.875rem 1rem', fontSize: '0.875rem', resize: 'none' }}
               required
             />
           </div>
 
           {/* Submit */}
-          <div className="pt-4">
+          <div style={{ marginTop: '0.5rem' }}>
             <button
               type="submit"
               disabled={!selectedTime || !subject || !purpose}
-              className="w-full bg-[#f97316] hover:bg-[#ea580c] disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-bold text-sm py-4 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 tracking-widest uppercase shadow-lg shadow-orange-500/20"
+              className="w-full font-bold transition-all uppercase tracking-wider"
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '0.5rem',
+                padding: '1rem', 
+                borderRadius: '0.5rem', 
+                fontSize: '0.875rem',
+                backgroundColor: (!selectedTime || !subject || !purpose) ? '#cbd5e1' : '#f97316',
+                color: '#ffffff',
+                cursor: (!selectedTime || !subject || !purpose) ? 'not-allowed' : 'pointer'
+              }}
             >
-              Kirim Pemesanan
-              <ArrowRight size={18} />
+              KIRIM PEMESANAN <ArrowRight size={16} />
             </button>
-            <p className="text-center text-slate-500 text-xs mt-4">
+            <p className="text-center text-slate-500" style={{ marginTop: '0.75rem', fontSize: '0.7rem' }}>
               Dengan mengirimkan, Anda menyetujui pedoman penggunaan fasilitas.
             </p>
           </div>

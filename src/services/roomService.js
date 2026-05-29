@@ -16,7 +16,13 @@ export const searchRooms = (filters = {}) => {
     })
   }
 
-  if (filters.fasilitas && filters.fasilitas !== 'semua') {
+  if (Array.isArray(filters.fasilitas) && filters.fasilitas.length > 0) {
+    results = results.filter((r) =>
+      filters.fasilitas.every((filterFasil) =>
+        r.fasilitas.some((f) => f.toLowerCase().includes(filterFasil.toLowerCase()))
+      )
+    )
+  } else if (typeof filters.fasilitas === 'string' && filters.fasilitas !== 'semua' && filters.fasilitas !== '') {
     results = results.filter((r) =>
       r.fasilitas.some((f) => f.toLowerCase().includes(filters.fasilitas.toLowerCase()))
     )

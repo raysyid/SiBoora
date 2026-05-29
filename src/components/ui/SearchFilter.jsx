@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Calendar, Clock, Users, Layers, Search } from 'lucide-react'
 
 const kapasitasOptions = [
@@ -38,6 +38,7 @@ const selectStyle = {
   paddingRight: '32px',
   appearance: 'none',
   cursor: 'pointer',
+  userSelect: 'none',
 }
 
 const labelStyle = {
@@ -77,8 +78,32 @@ export default function SearchFilter({ onSearch }) {
     jamMulai: '',
     jamSelesai: '',
     kapasitas: 'semua',
-    fasilitas: 'semua',
+    fasilitas: [],
   })
+
+  const [isFasilitisOpen, setIsFasilitisOpen] = useState(false)
+  const dropdownRef = useRef(null)
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsFasilitisOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const toggleFasilitas = (value) => {
+    setFilters((prev) => {
+      const current = prev.fasilitas
+      if (current.includes(value)) {
+        return { ...prev, fasilitas: current.filter(item => item !== value) }
+      } else {
+        return { ...prev, fasilitas: [...current, value] }
+      }
+    })
+  }
 
   const handleChange = (field, value) => {
     setFilters((prev) => ({ ...prev, [field]: value }))
@@ -172,21 +197,66 @@ export default function SearchFilter({ onSearch }) {
         </div>
 
         {/* Fasilitas */}
-        <div>
+        <div ref={dropdownRef}>
           <label style={labelStyle}>Fasilitas</label>
           <div style={{ position: 'relative' }}>
-            <Layers size={15} style={iconStyle} />
-            <select
-              id="filter-fasilitas"
-              value={filters.fasilitas}
-              onChange={(e) => handleChange('fasilitas', e.target.value)}
-              style={selectStyle}
+            <div 
+              style={{ ...selectStyle, display: 'flex', alignItems: 'center' }}
+              onClick={() => setIsFasilitisOpen(!isFasilitisOpen)}
             >
-              {fasilitasOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>{opt.label}</option>
-              ))}
-            </select>
-            {chevron}
+              <Layers size={15} style={iconStyle} />
+              <span style={{ overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', display: 'block', paddingLeft: '20px' }}>
+                {filters.fasilitas.length === 0 
+                  ? 'Semua Fasilitas' 
+                  : `${filters.fasilitas.length} Fasilitas Dipilih`}
+              </span>
+              {chevron}
+            </div>
+            
+            {isFasilitisOpen && (
+              <div style={{
+                position: 'absolute',
+                top: '100%',
+                left: 0,
+                right: 0,
+                marginTop: '4px',
+                background: 'white',
+                border: '1px solid #e2e8f0',
+                borderRadius: '8px',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                zIndex: 10,
+                maxHeight: '200px',
+                overflowY: 'auto',
+                display: 'flex',
+                flexDirection: 'column'
+              }}>
+                {fasilitasOptions.filter(opt => opt.value !== 'semua').map((opt) => (
+                  <label 
+                    key={opt.value} 
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      padding: '10px 12px',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                      color: '#334155',
+                      borderBottom: '1px solid #f1f5f9',
+                      transition: 'background-color 0.2s'
+                    }}
+                    onMouseOver={e => e.currentTarget.style.backgroundColor = '#f8fafc'}
+                    onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
+                  >
+                    <input 
+                      type="checkbox"
+                      checked={filters.fasilitas.includes(opt.value)}
+                      onChange={() => toggleFasilitas(opt.value)}
+                      style={{ marginRight: '10px', cursor: 'pointer', width: '16px', height: '16px', accentColor: '#f97316' }}
+                    />
+                    {opt.label}
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
