@@ -1,16 +1,54 @@
-# React + Vite
+# SiBoora — Implementasi Fitur Pemesanan Ruang
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Repositori ini berisi implementasi fitur utama dari sistem SiBoora, yaitu alur pemesanan ruang oleh mahasiswa. Fitur yang diimplementasikan mencakup tiga halaman utama: pencarian ruang, detail ruang, dan form booking ruang.
 
-Currently, two official plugins are available:
+## Fitur yang Diimplementasikan
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Cari Ruangan**
+Halaman untuk mencari ruang berdasarkan beberapa filter seperti tanggal, waktu, kapasitas, dan fasilitas. Hasil pencarian ditampilkan dalam bentuk kartu yang memuat informasi singkat tiap ruangan beserta statusnya.
 
-## React Compiler
+**Detail Ruangan**
+Halaman yang menampilkan informasi lengkap suatu ruangan, termasuk deskripsi, fasilitas yang tersedia, dan jadwal ketersediaan. Mahasiswa juga dapat memilih tanggal untuk mengecek ketersediaan sebelum melanjutkan ke halaman booking.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Booking Ruangan**
+Halaman form pemesanan ruang. Mahasiswa mengisi informasi seperti waktu yang diinginkan, mata kuliah atau subjek kegiatan, dan tujuan penggunaan ruangan. Form tidak bisa dikirim jika ada field yang belum diisi.
 
-## Expanding the ESLint configuration
+## Teknologi yang Digunakan
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React 19** — library utama untuk membangun antarmuka berbasis komponen
+- **React Router DOM v7** — untuk navigasi antar halaman (SPA)
+- **Tailwind CSS v4** — untuk styling dengan utility-class
+- **Lucide React** — ikon-ikon antarmuka
+- **Vite** — build tool dan development server
+
+## Menjalankan Proyek
+
+```bash
+npm install
+npm run dev
+```
+
+Aplikasi akan berjalan di `http://localhost:5173`.
+
+## Struktur Proyek
+
+```
+src/
+├── components/
+│   ├── rooms/       # Komponen terkait tampilan ruangan (RoomCard, ScheduleRow, dll)
+│   └── ui/          # Komponen UI umum (Button, Badge, SearchFilter)
+├── data/
+│   └── rooms.js     # Data statis ruangan
+├── layouts/
+│   └── MainLayout.jsx
+├── pages/
+│   ├── CariRuanganPage.jsx
+│   ├── DetailRuanganPage.jsx
+│   └── BookingRuanganPage.jsx
+├── router/
+│   └── index.jsx
+└── services/
+    └── roomService.js  # Logika filter dan pencarian ruangan
+```
+
+Data ruangan saat ini bersifat statis (tanpa backend). Logika filter pencarian berada di `roomService.js`.
