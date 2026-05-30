@@ -9,9 +9,9 @@ import Badge from '../ui/Badge'
 export default function ScheduleRow({ waktu, status }) {
   const isTersedia = status === 'tersedia'
   return (
-    <div className="flex items-center justify-between bg-slate-100 border border-slate-200 rounded-md" style={{ padding: '0.625rem 1rem' }}>
-      <span className="text-sm text-slate-700">{waktu}</span>
-      <span className="text-xs rounded text-white" style={{ padding: '0.25rem 0.75rem', backgroundColor: isTersedia ? '#20c997' : '#ff4d4f' }}>
+    <div className="flex items-center justify-between bg-white border border-slate-200 rounded-md" style={{ padding: '0.625rem 1rem' }}>
+      <span className="text-sm font-medium text-slate-700">{waktu}</span>
+      <span className="text-xs rounded font-semibold text-white" style={{ padding: '0.25rem 0.75rem', backgroundColor: isTersedia ? '#20c997' : '#ff4d4f' }}>
         {isTersedia ? 'Tersedia' : 'Dipesan'}
       </span>
     </div>

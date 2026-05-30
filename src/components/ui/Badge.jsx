@@ -6,11 +6,11 @@
 export default function Badge({ status, className = '' }) {
   const config = {
     tersedia: {
-      label: '● Tersedia',
+      label: 'Tersedia',
       classes: 'bg-emerald-100 text-emerald-700 border border-emerald-200',
     },
     digunakan: {
-      label: '● Digunakan',
+      label: 'Digunakan',
       classes: 'bg-red-100 text-red-600 border border-red-200',
     },
     dipesan: {
@@ -23,7 +23,8 @@ export default function Badge({ status, className = '' }) {
 
   return (
     <span
-      className={`inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full ${classes} ${className}`}
+      className={`inline-flex items-center text-xs font-semibold rounded-full ${classes} ${className}`}
+      style={{ padding: '6px 16px', letterSpacing: '0.02em', display: 'inline-block' }}
     >
       {label}
     </span>

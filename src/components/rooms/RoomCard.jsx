@@ -29,7 +29,7 @@ export default function RoomCard({ room }) {
       {/* Image */}
       <div style={{ position: 'relative', height: '200px', overflow: 'hidden', flexShrink: 0 }}>
         <img
-          src={image}
+          src={image || `https://placehold.co/400x220/e2e8f0/94a3b8?text=${encodeURIComponent(nama)}`}
           alt={`Foto ${nama}`}
           style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }}
           onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}

@@ -131,10 +131,9 @@ export default function BookingRuanganPage() {
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
                 className="text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                style={{ width: '100%', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '0.5rem', padding: '0.75rem 1rem', paddingRight: '2.5rem', fontSize: '0.875rem' }}
+                style={{ width: '100%', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '0.5rem', padding: '0.75rem 1rem', fontSize: '0.875rem' }}
                 required
               />
-              <Calendar size={16} className="text-slate-400" style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
             </div>
           </div>
           
@@ -154,23 +153,29 @@ export default function BookingRuanganPage() {
               {jadwal.map((slot) => {
                 const isAvailable = slot.status === 'tersedia';
                 const isSelected = selectedTime === slot.waktu;
+                
+                let baseClasses = 'transition-colors duration-200 border '
+                if (!isAvailable) {
+                  baseClasses += 'bg-slate-50 text-slate-400 border-slate-200 cursor-not-allowed'
+                } else if (isSelected) {
+                  baseClasses += 'bg-orange-500 text-white border-orange-500 cursor-pointer'
+                } else {
+                  baseClasses += 'bg-white text-slate-600 border-slate-200 cursor-pointer hover:border-orange-400 hover:text-orange-500 hover:bg-orange-50'
+                }
+
                 return (
                   <button
                     key={slot.waktu}
                     type="button"
                     disabled={!isAvailable}
                     onClick={() => setSelectedTime(slot.waktu)}
-                    className="transition-colors"
+                    className={baseClasses}
                     style={{ 
                       padding: '0.625rem 0', 
                       borderRadius: '9999px', 
                       fontSize: '0.875rem', 
                       fontWeight: '500', 
-                      textAlign: 'center',
-                      backgroundColor: !isAvailable ? '#f8fafc' : (isSelected ? '#f97316' : '#ffffff'),
-                      color: !isAvailable ? '#94a3b8' : (isSelected ? '#ffffff' : '#475569'),
-                      border: isSelected ? '1px solid #f97316' : '1px solid #e2e8f0',
-                      cursor: !isAvailable ? 'not-allowed' : 'pointer'
+                      textAlign: 'center'
                     }}
                   >
                     {slot.waktu}

@@ -95,7 +95,7 @@ export default function DetailRuanganPage() {
           {/* Hero Image */}
           <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-100" style={{ marginBottom: '1.5rem', aspectRatio: '16/9' }}>
             <img
-              src={image}
+              src={image || `https://placehold.co/800x400/e2e8f0/94a3b8?text=${encodeURIComponent(nama)}`}
               alt={`Foto ${nama}`}
               className="w-full h-full object-cover"
               onError={(e) => {
@@ -193,12 +193,7 @@ export default function DetailRuanganPage() {
                     value={selectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
                     className="w-full text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-700"
-                    style={{ padding: '0.625rem 0.75rem', paddingRight: '2.5rem' }}
-                  />
-                  <Calendar
-                    size={16}
-                    className="absolute text-slate-400 pointer-events-none"
-                    style={{ right: '0.75rem', top: '50%', transform: 'translateY(-50%)' }}
+                    style={{ padding: '0.625rem 0.75rem' }}
                   />
                 </div>
               </div>
@@ -224,8 +219,8 @@ export default function DetailRuanganPage() {
             <div style={{ backgroundColor: '#eff6ff', padding: '1.25rem', borderTop: '1px solid #dbeafe' }}>
               <button
                 onClick={() => navigate(`/booking-ruangan/${id}`)}
-                className="w-full text-white font-bold text-sm rounded-md transition-all uppercase tracking-wider hover:opacity-90"
-                style={{ backgroundColor: '#f97316', padding: '0.75rem 1rem', marginBottom: '0.5rem' }}
+                className="w-full font-bold text-sm rounded-md transition-colors duration-200 uppercase tracking-wider bg-orange-500 hover:bg-orange-600 text-white"
+                style={{ padding: '0.75rem 1rem', marginBottom: '0.5rem', cursor: 'pointer' }}
               >
                 Booking Ruang
               </button>
