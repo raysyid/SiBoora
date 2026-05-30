@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Calendar, Clock, Users, Layers, Search } from 'lucide-react'
+import { Users, Layers, Search } from 'lucide-react'
 
 const kapasitasOptions = [
   { value: 'semua', label: 'Semua Kapasitas' },
@@ -134,13 +134,12 @@ export default function SearchFilter({ onSearch }) {
           <div>
             <label style={labelStyle}>Tanggal</label>
             <div style={{ position: 'relative' }}>
-              <Calendar size={14} style={iconStyle} />
               <input
                 id="filter-tanggal"
                 type="date"
                 value={filters.tanggal}
                 onChange={(e) => handleChange('tanggal', e.target.value)}
-                style={{ ...inputStyle, width: 'auto' }}
+                style={{ ...inputStyle, paddingLeft: '10px', width: 'auto' }}
               />
             </div>
           </div>
@@ -150,24 +149,22 @@ export default function SearchFilter({ onSearch }) {
             <label style={labelStyle}>Waktu</label>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <div style={{ position: 'relative' }}>
-                <Clock size={14} style={iconStyle} />
                 <input
                   id="filter-jam-mulai"
                   type="time"
                   value={filters.jamMulai}
                   onChange={(e) => handleChange('jamMulai', e.target.value)}
-                  style={{ ...inputStyle, width: 'auto' }}
+                  style={{ ...inputStyle, paddingLeft: '10px', width: 'auto' }}
                 />
               </div>
               <span style={{ color: '#94a3b8', fontWeight: '500' }}>-</span>
               <div style={{ position: 'relative' }}>
-                <Clock size={14} style={iconStyle} />
                 <input
                   id="filter-jam-selesai"
                   type="time"
                   value={filters.jamSelesai}
                   onChange={(e) => handleChange('jamSelesai', e.target.value)}
-                  style={{ ...inputStyle, width: 'auto' }}
+                  style={{ ...inputStyle, paddingLeft: '10px', width: 'auto' }}
                 />
               </div>
             </div>

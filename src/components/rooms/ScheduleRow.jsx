@@ -1,4 +1,3 @@
-import Badge from '../ui/Badge'
 
 /**
  * Baris jadwal penggunaan ruangan

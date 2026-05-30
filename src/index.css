@@ -38,6 +38,11 @@ html, body, #root {
   height: 100%;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background-color: #f0f4ff;

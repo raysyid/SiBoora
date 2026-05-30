@@ -5,8 +5,6 @@ import {
   MapPin,
   Users,
   LayoutGrid,
-  Calendar,
-  CheckCircle2,
   AlertCircle,
 } from 'lucide-react'
 import Button from '../components/ui/Button'
@@ -23,16 +21,9 @@ export default function DetailRuanganPage() {
   const navigate = useNavigate()
   const room = getRoomDetail(id)
 
-  const today = new Date().toLocaleDateString('id-ID', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
-
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split('T')[0]
   )
-  const [bookingSuccess, setBookingSuccess] = useState(false)
 
   if (!room) {
     return (
@@ -52,12 +43,7 @@ export default function DetailRuanganPage() {
     )
   }
 
-  const { nama, lokasi, gedung, lantai, kapasitas, tipe, fasilitas, status, image, deskripsi, jadwal } = room
-
-  const handleBooking = () => {
-    setBookingSuccess(true)
-    setTimeout(() => setBookingSuccess(false), 3000)
-  }
+  const { nama, gedung, lantai, kapasitas, tipe, fasilitas, image, deskripsi, jadwal } = room
 
   // Split facilities into 2 columns
   const col1 = fasilitas.slice(0, Math.ceil(fasilitas.length / 2))

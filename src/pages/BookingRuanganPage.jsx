@@ -6,7 +6,6 @@ import {
   Book,
   FileText,
   ArrowRight,
-  Pen,
   Wifi,
   Monitor,
   Video,
@@ -85,10 +84,10 @@ export default function BookingRuanganPage() {
         <div style={{ flex: 1, padding: '0.5rem 0', position: 'relative' }}>
           <button
             onClick={() => navigate(`/ruangan/${id}`)}
-            className="text-blue-500 hover:text-blue-700 transition-colors"
+            className="text-blue-500 hover:text-blue-700 transition-colors text-sm font-medium hover:underline cursor-pointer"
             style={{ position: 'absolute', top: '0', right: '0.5rem' }}
           >
-            <Pen size={18} />
+            Detail Ruangan
           </button>
           
           <div style={{ marginBottom: '0.75rem' }}>
